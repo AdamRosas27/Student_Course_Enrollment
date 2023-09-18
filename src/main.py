@@ -1,5 +1,7 @@
 """ Can use a hashmap to store the students names as a key and the list of classes their enrolled in as the value for easy lookup """
 
+""" Can use an avl tree to represent all the courses available. For instance, "Courses" could be the root and each course would be children of the root "courses". and each child node could be a hashmap """
+
 
 class Courses:
 
