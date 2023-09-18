@@ -1,1 +1,1 @@
-# student_course_enrollment
+# Student Course Enrollment
