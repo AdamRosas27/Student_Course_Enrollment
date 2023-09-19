@@ -7,13 +7,13 @@ class Courses:
         self.schedule = schedule
 
     def add_student(self, student_id):
-        pass
+        self.enrolled_students.append(student_id)
 
     def drop_student(self, student_id):
-        pass
+        self.enrolled_students.remove(student_id)
 
     def view_roster(self):
-        pass
+        return self.enrolled_students
 
 
 class Student:
@@ -24,13 +24,21 @@ class Student:
         self.enrolled_courses = set()
 
     def add_course(self, course_id):
-        pass
+        if course_id in Courses:
+            self.enrolled_courses.add(course_id)
+            Courses.add_student(self.student_id)
+        else:
+            print("Unable to add course. Course does not exist.")
 
     def drop_course(self, course_id):
-        pass
+        if course_id not in Courses:
+            print("Unable to drop course. Student is not enrolled in course " + course_id)
+        else:
+            self.enrolled_courses.remove(course_id)
+            Courses.drop_student(self.student_id)
 
     def view_schedule(self):
-        pass
+        return self.enrolled_courses
 
 
 class Registration:
@@ -57,3 +65,10 @@ class Registration:
     # Create a method that returns the roster of the course which returns a list of students enrolled in the course
     def course_roster(self):
         pass
+
+
+student1 = Student(1, "John")
+student1.add_course("CS101")
+student1.add_course("CS102")
+student1.add_course("CS103")
+student1.view_schedule()
