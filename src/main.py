@@ -16,7 +16,13 @@ class Student:
 
 
 class Course:
-    pass
+
+    # Add a constructor that will intialize the course's name and id
+    def __init__(self, course_name, course_id):
+        self.course_name = course_name
+        self.course_id = course_id
+        self.students = Set()
+
 
 # Add a class that will represent the registrar system
 
