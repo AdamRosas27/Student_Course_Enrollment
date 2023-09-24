@@ -30,6 +30,22 @@ class Course:
 class Registrar:
     pass
 
+    def __init__(self) -> None:
+        pass
+
+    def add_course():
+        pass
+
+    def remove_course():
+        pass
+
+    def print_course_roster():
+        pass
+
+    def print_student_schedule():
+        pass
+
+
 # Add a class that will represent the AVL tree and its methods
 
 
