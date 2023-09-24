@@ -33,11 +33,84 @@ class Registrar:
 # Add a class that will represent the AVL tree and its methods
 
 
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.height = 1
+        self.left = None
+        self.right = None
+
+
 class AVLTree:
-    pass
+    def __init__(self):
+        self.root = None
 
-# Add a class that will represent the nodes of the AVL tree
+    def height(self, node):
+        if node is None:
+            return 0
+        return node.height
+
+    def get_balance(self, node):
+        if node is None:
+            return 0
+        return self.height(node.left) - self.height(node.right)
+
+    def right_rotate(self, y):
+        x = y.left
+        T2 = x.right
+        x.right = y
+        y.left = T2
+        y.height = max(self.height(y.left), self.height(y.right)) + 1
+        x.height = max(self.height(x.left), self.height(x.right)) + 1
+        return x
+
+    def left_rotate(self, x):
+        y = x.right
+        T2 = y.left
+        y.left = x
+        x.right = T2
+        x.height = max(self.height(x.left), self.height(x.right)) + 1
+        y.height = max(self.height(y.left), self.height(y.right)) + 1
+        return y
+
+    def insert(self, root, key):
+        if root is None:
+            return Node(key)
+        if key < root.key:
+            root.left = self.insert(root.left, key)
+        elif key > root.key:
+            root.right = self.insert(root.right, key)
+        else:  # Duplicate keys are not allowed
+            return root
+
+        root.height = 1 + max(self.height(root.left), self.height(root.right))
+        balance = self.get_balance(root)
+
+        if balance > 1 and key < root.left.key:
+            return self.right_rotate(root)
+        if balance < -1 and key > root.right.key:
+            return self.left_rotate(root)
+        if balance > 1 and key > root.left.key:
+            root.left = self.left_rotate(root.left)
+            return self.right_rotate(root)
+        if balance < -1 and key < root.right.key:
+            root.right = self.right_rotate(root.right)
+            return self.left_rotate(root)
+
+        return root
+
+    def in_order_traversal(self, node):
+        if node:
+            self.in_order_traversal(node.left)
+            print(node.key, end=" ")
+            self.in_order_traversal(node.right)
 
 
-class AVLNode:
-    pass
+if __name__ == "__main__":
+    tree = AVLTree()
+    # Insert some keys into the tree
+    tree.root = tree.insert(tree.root, 10)
+    tree.root = tree.insert(tree.root, 20)
+    tree.root = tree.insert(tree.root, 30)
+    # Print the tree in-order
+    tree.in_order_traversal(tree.root)
