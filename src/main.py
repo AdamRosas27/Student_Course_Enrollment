@@ -63,8 +63,17 @@ class Registrar:
 
     def enroll_student(self, student_id, course_id):
         if student_id in self.students and course_id in self.courses:
-            self.students[student_id].courses.add(self.courses[course_id])
-            self.courses[course_id].students.add(self.students[student_id])
+            student = self.students[student_id]
+            course_to_enroll = self.courses[course_id]
+
+            if self.course_conflicts(self.course_tree.root, course_to_enroll):
+                print(
+                    f"Cannot enroll in {course_to_enroll.course_name} due to time conflict.")
+                return
+
+            student.courses.add(course_to_enroll)
+            course_to_enroll.students.add(student)
+
         else:
             print("Student or course does not exist")
 
@@ -81,6 +90,15 @@ class Registrar:
                 print(course.course_name)
         else:
             print("Student does not exist")
+
+    def course_conflicts(self, root, course_to_check):
+        if not root:
+            return False
+        if root.course.conflicts_with(course_to_check):
+            return True
+        if course_to_check.start_time < root.course.start_time:
+            return self.course_conflicts(root.left, course_to_check)
+        return self.course_conflicts(root.right, course_to_check)
 
 
 # Add a class that will represent the AVL tree and its methods
