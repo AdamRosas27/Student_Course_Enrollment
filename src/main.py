@@ -16,9 +16,11 @@ class Student:
 class Course:
 
     # Add a constructor that will intialize the course's name and id
-    def __init__(self, course_name, course_id):
+    def __init__(self, course_name, course_id, start_time, end_time):
         self.course_name = course_name
         self.course_id = course_id
+        self.start_time = start_time
+        self.end_time = end_time
         self.students = set()
 
 
