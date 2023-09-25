@@ -14,16 +14,12 @@ def main():
     # Add some courses
     registrar.add_course("C001", "Math 101", 9, 10)
     registrar.add_course("C002", "Physics 101", 10, 11)
-    # This should conflict with Physics 101
-    registrar.add_course("C003", "Chemistry 101", 10, 11)
 
-    # Enroll Alice in Math 101 and Physics 101
+    # Enroll Alice in Math 101
     registrar.enroll_student("S001", "C001")
-    registrar.enroll_student("S001", "C002")
 
-    # Enroll Bob in Physics 101 and Chemistry 101 (should show a conflict)
+    # Enroll Bob in Physics 101
     registrar.enroll_student("S002", "C002")
-    registrar.enroll_student("S002", "C003")
 
     # Print student schedules
     print("\nAlice's Schedule:")
@@ -45,7 +41,6 @@ def main():
     # Add some courses
     registrar.add_course("C001", "Math 101", 9, 10)
     registrar.add_course("C002", "Physics 101", 10, 11)
-# Adjusting the time for Chemistry 101 to avoid conflicts
     registrar.add_course("C003", "Chemistry 101", 11, 12)
 
     # Enroll Alice in Math 101 and Physics 101

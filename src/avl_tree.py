@@ -1,6 +1,7 @@
 from course import Course
 
 # Add a class that will represent the AVL tree and its methods
+### AVL Tree stucture given by professor Celly translated from Java to Python ###
 
 
 class Node:
