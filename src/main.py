@@ -31,8 +31,11 @@ class Registrar:
         self.courses = {}
         self.students = {}
 
-    def add_course():
-        pass
+    def add_course(self, course_id, course_name):
+        if course_id not in self.courses:
+            self.courses[course_id] = Course(course_name, course_id)
+        else:
+            print("Course already added.")
 
     def remove_course():
         pass
