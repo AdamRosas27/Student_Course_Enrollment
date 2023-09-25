@@ -43,6 +43,12 @@ class Registrar:
         else:
             print("Course does not exist")
 
+    def add_student(self, student_id, student_name):
+        if student_id not in self.students:
+            self.students[student_id] = Student(student_name, student_id)
+        else:
+            print("Student already added.")
+
     def print_course_roster(self, course_id):
         if course_id in self.courses:
             for student in self.courses[course_id].students:
