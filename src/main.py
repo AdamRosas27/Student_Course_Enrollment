@@ -83,8 +83,8 @@ class Registrar:
 
 
 class Node:
-    def __init__(self, key):
-        self.key = key
+    def __init__(self, course):
+        self.course = course
         self.height = 1
         self.left = None
         self.right = None
@@ -122,27 +122,27 @@ class AVLTree:
         y.height = max(self.height(y.left), self.height(y.right)) + 1
         return y
 
-    def insert(self, root, key):
-        if root is None:
-            return Node(key)
-        if key < root.key:
-            root.left = self.insert(root.left, key)
-        elif key > root.key:
-            root.right = self.insert(root.right, key)
-        else:  # Duplicate keys are not allowed
+    def insert(self, root, course):
+        if not root:
+            return Node(course)
+        if course.start_time < root.course.start_time:
+            root.left = self.insert(root.left, course)
+        elif course.start_time > root.course.start_time:
+            root.right = self.insert(root.right, course)
+        else:
             return root
 
         root.height = 1 + max(self.height(root.left), self.height(root.right))
         balance = self.get_balance(root)
 
-        if balance > 1 and key < root.left.key:
+        if balance > 1 and course < root.left.course:
             return self.right_rotate(root)
-        if balance < -1 and key > root.right.key:
+        if balance < -1 and course > root.right.course:
             return self.left_rotate(root)
-        if balance > 1 and key > root.left.key:
+        if balance > 1 and course > root.left.course:
             root.left = self.left_rotate(root.left)
             return self.right_rotate(root)
-        if balance < -1 and key < root.right.key:
+        if balance < -1 and course < root.right.course:
             root.right = self.right_rotate(root.right)
             return self.left_rotate(root)
 
