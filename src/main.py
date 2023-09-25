@@ -23,6 +23,9 @@ class Course:
         self.end_time = end_time
         self.students = set()
 
+    def conflicts_with(self, other_course):
+        return not (self.end_time <= other_course.start_time or self.start_time >= other_course.end_time)
+
 
 # Add a class that will represent the registrar system
 
@@ -157,14 +160,14 @@ class AVLTree:
         root.height = 1 + max(self.height(root.left), self.height(root.right))
         balance = self.get_balance(root)
 
-        if balance > 1 and course < root.left.course:
+        if balance > 1 and course.start_time < root.left.course.start_time:
             return self.right_rotate(root)
-        if balance < -1 and course > root.right.course:
+        if balance < -1 and course.start_time > root.right.course.start_time:
             return self.left_rotate(root)
-        if balance > 1 and course > root.left.course:
+        if balance > 1 and course.start_time > root.left.course.start_time:
             root.left = self.left_rotate(root.left)
             return self.right_rotate(root)
-        if balance < -1 and course < root.right.course:
+        if balance < -1 and course.start_time < root.right.course.start_time:
             root.right = self.right_rotate(root.right)
             return self.left_rotate(root)
 
@@ -173,7 +176,7 @@ class AVLTree:
     def in_order_traversal(self, node):
         if node:
             self.in_order_traversal(node.left)
-            print(node.key, end=" ")
+            print(node.course.course_name, end=" ")
             self.in_order_traversal(node.right)
 
 
