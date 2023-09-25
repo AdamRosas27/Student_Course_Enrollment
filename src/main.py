@@ -50,8 +50,12 @@ class Registrar:
         else:
             print("Course does not exist")
 
-    def print_student_schedule():
-        pass
+    def print_student_schedule(self, student_id):
+        if student_id in self.students:
+            for course in self.students[student_id].courses:
+                print(course.course_name)
+        else:
+            print("Student does not exist")
 
 
 # Add a class that will represent the AVL tree and its methods
