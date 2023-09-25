@@ -1,5 +1,3 @@
-# Import collections to be able to use the set data structure
-from collections import set as Set
 
 # Add a class that will represent the student
 
@@ -10,7 +8,7 @@ class Student:
     def __init__(self, student_name, student_id):
         self.student_name = student_name
         self.student_id = student_id
-        self.courses = Set()
+        self.courses = set()
 
 # Add a class that will represent the course
 
@@ -21,17 +19,17 @@ class Course:
     def __init__(self, course_name, course_id):
         self.course_name = course_name
         self.course_id = course_id
-        self.students = Set()
+        self.students = set()
 
 
 # Add a class that will represent the registrar system
 
 
 class Registrar:
-    pass
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self):
+        self.courses = {}
+        self.students = {}
 
     def add_course():
         pass
