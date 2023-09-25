@@ -37,11 +37,18 @@ class Registrar:
         else:
             print("Course already added.")
 
-    def remove_course():
-        pass
+    def remove_course(self, course_id):
+        if course_id in self.courses:
+            del self.courses[course_id]
+        else:
+            print("Course does not exist")
 
-    def print_course_roster():
-        pass
+    def print_course_roster(self, course_id):
+        if course_id in self.courses:
+            for student in self.courses[course_id].students:
+                print(student.student_name)
+        else:
+            print("Course does not exist")
 
     def print_student_schedule():
         pass
