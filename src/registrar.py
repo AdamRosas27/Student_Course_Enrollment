@@ -54,18 +54,12 @@ class Registrar:
             print("Student or course does not exist")
 
     def print_course_roster(self, course_id):
-        if course_id in self.courses:
-            for student in self.courses[course_id].students:
-                print(student.student_name)
-        else:
-            print("Course does not exist")
+        for students in self.courses[course_id].students:
+            print(students.student_name)
 
     def print_student_schedule(self, student_id):
-        if student_id in self.students:
-            for course in self.students[student_id].courses:
-                print(course.course_name)
-        else:
-            print("Student does not exist")
+        for courses in self.students[student_id].courses:
+            print(courses.course_name)
 
     def course_conflicts(self, root, course_to_check):
         if not root:

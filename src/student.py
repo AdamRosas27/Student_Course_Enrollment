@@ -6,3 +6,8 @@ class Student:
         self.student_name = student_name
         self.student_id = student_id
         self.courses = set()
+
+    def print_schedule(self, student_id):
+        if student_id in self.students:
+            for course in self.students[student_id].courses:
+                print(course.course_name)
