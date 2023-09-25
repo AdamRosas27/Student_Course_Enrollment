@@ -8,12 +8,10 @@ This project focuses on enhancing the university Registrar's Office system to ef
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Features](#features)
-  - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
   - [Usage](#usage)
-  - [Configuration](#configuration)
-  - [Contributing](#contributing)
+    - [Setup](#setup)
+    - [Basic Functionalities](#basic-functionalities)
+    - [Running Test](#running-test)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
 
@@ -29,29 +27,29 @@ The project revolves around improving the functionality of the university's Regi
 - Student Schedule: Each student should be able to view their current schedule, which lists the courses they are enrolled in.
 - Conflict Resolution: Ensure that students are not able to enroll in courses with overlapping schedules.
 
-## Getting Started
-
-Explain how to get started with your project. Include any necessary steps, dependencies, or installation instructions.
-
-### Prerequisites
-
-List any software, libraries, or tools that users need to install before they can use your project.
-
-### Installation
-
-Provide step-by-step installation instructions. You can include code snippets, commands, or links to detailed installation guides.
-
 ## Usage
 
-Provide examples and instructions on how to use your project. Include code snippets, screenshots, or demos if applicable.
+### Setup
 
-## Configuration
+1. Ensure you have the files: student.py, course.py, registrar.py, and avl_tree.py.
+2. Import the required classes:
+```from registrar import Registrar```
 
-Explain how users can configure or customize your project. Provide information about configuration files or settings.
+### Basic Functionalities
+1. Add Student:
+```registrar = Registrar() registrar.add_student("S001", "Alice")```
+2. Add Course:
+```registrar.add_course("C001", "Math 101", 9, 10)  # 9 AM to 10 AM```
+3. Enroll Student:
+```registrar.enroll_student("S001", "C001")```
+4. View Student Schedule:
+```registrar.print_student_schedule("S001")```
+5. View Course Roster
+```registrar.print_course_roster("C001")```
 
-## Contributing
+### Running Test
+```if __name__ == "__main__": main()```
 
-Explain how others can contribute to your project. Include guidelines for code contributions, bug reporting, and feature requests.
 
 ## License
 
@@ -59,5 +57,6 @@ N/A
 
 ## Acknowledgments
 
-Give credit to individuals or projects that inspired or contributed to your project. You can also include relevant links or references here.
-
+- Adam Rosas
+- Luis Silva
+- Luis Romero
