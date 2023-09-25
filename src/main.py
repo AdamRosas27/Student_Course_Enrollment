@@ -32,10 +32,14 @@ class Registrar:
     def __init__(self):
         self.courses = {}
         self.students = {}
+        self.course_tree = AVLTree()
 
-    def add_course(self, course_id, course_name):
+    def add_course(self, course_id, course_name, start_time, end_time):
         if course_id not in self.courses:
-            self.courses[course_id] = Course(course_name, course_id)
+            new_course = Course(course_name, course_id, start_time, end_time)
+            self.courses[course_id] = new_course
+            self.course_tree.root = self.course_tree.insert(
+                self.course_tree.root, new_course)
         else:
             print("Course already added.")
 
